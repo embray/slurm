@@ -7974,7 +7974,7 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 		min_core_cnt = (min_core_cnt + cpus_per_core - 1) /
 			       cpus_per_core;
 
-		if (!enforce_binding && first_pass) {
+		if (!enforce_binding && !first_pass) {
 			/* Allow any GRES with any CPUs for now */
 			cpus_per_gres = 0;
 		} else if (job_specs->cpus_per_gres)
