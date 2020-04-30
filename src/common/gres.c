@@ -7989,8 +7989,7 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 		for (s = 0; s < sockets; s++)
 			socket_index[s] = s;
 		qsort_r(socket_index, sockets, sizeof(int),
-			_sort_sockets_by_avail_cores,
-			(void *)avail_cores_per_sock);
+			_sort_sockets_by_avail_cores, avail_cores_per_sock);
 
 		for (j = 0; j < sockets; j++) {
 			/*
