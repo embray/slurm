@@ -7853,8 +7853,8 @@ static int _sock_gres_sort(void *x, void *y)
 int _sort_sockets_by_avail_cores(const void *x, const void *y,
 				 void *socket_avail_cores)
 {
-	int *sockets = (int*)socket_avail_cores;
-	return (sockets[*(int*)y] - sockets[*(int*)x]);
+	uint16_t *sockets = (uint16_t *)socket_avail_cores;
+	return (sockets[*(int *)y] - sockets[*(int *)x]);
 }
 
 /*
