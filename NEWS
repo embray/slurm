@@ -4,6 +4,7 @@ documents those changes that are of interest to users and administrators.
 * Changes in Slurm 20.02.3
 ==========================
  -- cons_tres - Fix --gres-flags=enforce-binding.
+ -- cons_tres - Fix cpus-per-gpu handling.
 
 * Changes in Slurm 20.02.2
 ==========================
