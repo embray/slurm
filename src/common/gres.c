@@ -7993,7 +7993,8 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 			(void *)avail_cores_per_sock);
 
 		for (j = 0; j < sockets; j++) {
-			/* Test for sufficient gres_per_socket
+			/*
+			 * Test for sufficient gres_per_socket
 			 *
 			 * Start with socket with most cores available,
 			 * so we know that we have max number of cores on socket
@@ -8011,9 +8012,9 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 			 * socket has to be limited by cpus_per_gres
 			 */
 			if ((enforce_binding || first_pass) &&
-			     cpus_per_gres) {
-				int max_gres_socket = avail_cores_per_sock[s] *
-						      cpus_per_core /
+			    cpus_per_gres) {
+				int max_gres_socket = (avail_cores_per_sock[s] *
+						       cpus_per_core) /
 						      cpus_per_gres;
 				cnt_avail_sock = MIN(cnt_avail_sock,
 						     max_gres_socket);
