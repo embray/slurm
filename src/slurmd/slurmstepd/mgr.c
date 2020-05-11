@@ -637,6 +637,15 @@ _send_exit_msg(stepd_step_rec_t *job, uint32_t *tid, int n, int status)
 		msg.return_code = status;
 	msg.job_id		= job->jobid;
 	msg.step_id		= job->stepid;
+	/*
+	 * Only set the step_het_comp if we are in a het step from a single
+	 * allocation
+	 */
+	if ((job->het_job_offset != NO_VAL) && (job->het_job_id == NO_VAL))
+		msg.step_het_comp = job->het_job_offset;
+	else
+		msg.step_het_comp = NO_VAL;
+
 	slurm_msg_t_init(&resp);
 	resp.data		= &msg;
 	resp.msg_type		= MESSAGE_TASK_EXIT;
@@ -2385,6 +2394,16 @@ _send_launch_failure(launch_tasks_request_msg_t *msg, slurm_addr_t *cli, int rc,
 
 	resp.job_id        = msg->job_id;
 	resp.step_id       = msg->job_step_id;
+
+	/*
+	 * Only set the step_het_comp if we are in a het step from a single
+	 * allocation
+	 */
+	if ((msg->het_job_offset != NO_VAL) && (msg->het_job_id == NO_VAL))
+		resp.step_het_comp = msg->het_job_offset;
+	else
+		resp.step_het_comp = NO_VAL;
+
 	resp.node_name     = name;
 	resp.return_code   = rc ? rc : -1;
 	resp.count_of_pids = 0;
@@ -2416,6 +2435,16 @@ _send_launch_resp(stepd_step_rec_t *job, int rc)
 
 	resp.job_id		= job->jobid;
 	resp.step_id		= job->stepid;
+
+	/*
+	 * Only set the step_het_comp if we are in a het step from a single
+	 * allocation
+	 */
+	if ((job->het_job_offset != NO_VAL) && (job->het_job_id == NO_VAL))
+		resp.step_het_comp = job->het_job_offset;
+	else
+		resp.step_het_comp = NO_VAL;
+
 	resp.node_name		= xstrdup(job->node_name);
 	resp.return_code	= rc;
 	resp.count_of_pids	= job->node_tasks;
