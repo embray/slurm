@@ -8010,8 +8010,7 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 			 * If enforce binding number of gres allocated per
 			 * socket has to be limited by cpus_per_gres
 			 */
-			if ((enforce_binding || first_pass) &&
-			    cpus_per_gres) {
+			if ((enforce_binding || first_pass) && cpus_per_gres) {
 				int max_gres_socket = (avail_cores_per_sock[s] *
 						       cpus_per_core) /
 						      cpus_per_gres;
