@@ -8023,8 +8023,8 @@ extern void gres_plugin_job_core_filter3(gres_mc_data_t *mc_ptr,
 				 * Insufficient GRES on this socket
 				 * GRES removed here won't be used in 2nd pass
 				 */
-				if (((job_specs->gres_per_socket
-						> tot_gres_sock) ||
+				if (((job_specs->gres_per_socket >
+				      tot_gres_sock) ||
 				     enforce_binding) &&
 				    sock_gres->cnt_by_sock) {
 					sock_gres->total_cnt -=
